@@ -6,12 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DisAZ</title>
 </head>
+<style>
+    html,body {
+  font-size: 16px;
+}
+.result {
+  margin-top: 1rem;
+}
+</style>
 <body>
+    <label for="start">ใส่ตัวเริ่มต้น</label>
     <input type="text" id="start">
+    <div></div>
+    <label for="start">ใส่ตัวสุดท้าย</label>
     <input type="text" id="end">
-    <div id="result"></div>
+    <div class="result" id="result"></div>
+    
     <script>
-                // create a-z , 1 - 26
+        // create a-z , 1 - 26
         const alpha = Array.from(Array(26)).map((e, i) => i + 97);
         const alphabet = alpha.map((x) => String.fromCharCode(x));
         const number = Array.from(Array(26)).map((e, i) => i + 1)
@@ -27,9 +39,12 @@
         const result = document.getElementById("result")
         
         const findBetween = ()=> {
-            const distance = Math.abs(+dic[end.value] - +dic[start.value])
+            const distance = Math.abs(+dic[end.value.toLowerCase()] - +dic[start.value.toLowerCase()])
             if(distance) {
-                result.innerHTML = `ระยะห่าง ${distance}`    
+                result.innerHTML = `
+            <div>ระยะห่าง ${distance}</div>
+            <div>มี ${start.value}-${end.value} ${distance + 1} ตัว</div>
+            `    
             } else {
                 result.innerHTML = ``
             }
