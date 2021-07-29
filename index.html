@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DisAZ</title>
+</head>
+<body>
+    <input type="text" id="start">
+    <input type="text" id="end">
+    <div id="result"></div>
+    <script>
+                // create a-z , 1 - 26
+        const alpha = Array.from(Array(26)).map((e, i) => i + 97);
+        const alphabet = alpha.map((x) => String.fromCharCode(x));
+        const number = Array.from(Array(26)).map((e, i) => i + 1)
+
+        const dic = number.reduce(function (result, field, index) {
+                        result[alphabet[index]] = field;
+                        return result;
+        }, {})
+        
+        
+        const start = document.getElementById("start")
+        const end = document.getElementById("end")
+        const result = document.getElementById("result")
+        
+        const findBetween = ()=> {
+            const distance = Math.abs(+dic[end.value] - +dic[start.value])
+            if(distance) {
+                result.innerHTML = `ระยะห่าง ${distance}`    
+            } else {
+                result.innerHTML = ``
+            }
+
+        }
+        
+        start.addEventListener("input", findBetween)
+        end.addEventListener("input", findBetween)
+    </script>
+</body>
+</html>
