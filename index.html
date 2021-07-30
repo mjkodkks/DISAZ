@@ -39,7 +39,20 @@
         const result = document.getElementById("result")
         
         const findBetween = ()=> {
-            const distance = Math.abs(+dic[end.value.toLowerCase()] - +dic[start.value.toLowerCase()])
+            const startVal = start.value.toLowerCase()
+            const endVal = end.value.toLowerCase()
+            let calStart = 0
+            let calEnd = 0
+            
+            if (startVal.length === 2 || endVal.length === 2) {
+                calStart = startVal.length === 2 ? dic[startVal[0]] * 26 + (dic[startVal[1]]) : +dic[startVal]
+                calEnd = endVal.length === 2 ? dic[endVal[0]] * 26 + (dic[endVal[1]]) : +dic[endVal]
+            } else {
+                calStart = +dic[startVal]
+                calEnd = +dic[endVal]
+            }
+            console.log(calEnd, calStart)
+            const distance = Math.abs(calEnd - calStart)
             if(distance) {
                 result.innerHTML = `
             <div>ระยะห่าง ${distance}</div>
